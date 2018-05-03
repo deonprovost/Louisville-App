@@ -13,9 +13,8 @@ var map = new mapboxgl.Map({
     maxBounds: bounds
 });
 
-
-var overlay = document.getElementById('features-title');
-
+//var overlay = document.getElementById('features-title');
+var checkval;
 map.on('load', function() {
 /*
   map.removeLayer("segments_final-4isuhz");
@@ -30,7 +29,7 @@ map.addLayer({
    "paint": {
        //"line-color": `${segColor}`,
        "line-color": [
-         "step",
+         "stop",
          ["get","risk_score"],
          "#000000",
          20,
@@ -45,6 +44,8 @@ map.addLayer({
        "line-width": 2.5
 }
 });
+
+
     // Create popup
     var popup = new mapboxgl.Popup({
         closeButton: false,
@@ -96,6 +97,7 @@ if($('#traffic_sig')[0].checked){
 }
 */
 //reminder: can filter by groups on right with if/then logic like commented above
+var overlay = document.getElementById('features-title');
 overlay.innerHTML = 'Selected Features';
 var feature = e.features[0].properties;
 var pairs = _.pairs(feature);
@@ -106,11 +108,11 @@ for (i = 0; i < pairs.length; i++) {
   entry.textContent = `${text}`;
   overlay.appendChild(entry);
   overlay.style.display = 'block';
+  overlay.style.display = 'block';
 }
 
    });
 });
-
 
 //data to show in top right
 map.on('mouseleave', function (e) {
@@ -119,6 +121,46 @@ map.on('mouseleave', function (e) {
     overlay.style.display = 'none';
     popup.remove();
 });
+
+
+/*
+if($('#traffic_sig')[0].checked){
+checkval = 'visible';
+} else {
+checkval = 'none';
+}
+*/
+/*
+var toggleableLayerIds = [ "segments_final-4isuhz"];
+
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];
+
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
+
+    link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+    };
+
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+}
+*/
 
 //accordion
 $( function() {
@@ -213,28 +255,26 @@ map.addLayer({
     item.appendChild(value);
     legend.appendChild(item);
     }
-  }
-/*
-
-*/
+   }
   });
 
 });
-$( "#traffic_sig" ).prop("checked", true);
+$( "#traffic_sig" ).prop("checked", false);
 $( "#traffic_sig" ).prop('disabled',false);
 
+/*
 var test =  function(element){ if($('#traffic_sig')[0].checked){
  console.log("true");
 } else {
 console.log("false");
   }
 };
-
+*/
 
 $(document).ready(function(){
-test();
-    $('#exampleModalCenter').modal('show');
 
+test();
+$('#exampleModalCenter').modal('show');
 
 
 });
