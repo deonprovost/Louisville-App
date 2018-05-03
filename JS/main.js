@@ -20,7 +20,7 @@ $( "#slider-range" ).slider({
   min: 0,
   max: 100,
   values: [ 0, 100 ],
-  step: 20,
+  step: 1,
   slide: function( event, ui ) {
     if ( ( ui.values[ 0 ] ) > ui.values[ 1 ] ) { return false; }
     $( "#amount" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ]  );
@@ -94,12 +94,12 @@ map.on('load', function() {
   });
 
 
-  map.on('mousemove', 'streets', function(e) {
+  map.on('click', 'streets', function(e) {
     // Change the cursor style as a UI indicator.
     map.getCanvas().style.cursor = 'pointer';
 
     //reminder: can filter by groups on right with if/then logic like commented above
-    overlay.innerHTML = 'Selected Features';
+    overlay.innerHTML = 'Selected Feature';
     var feature = e.features[0].properties;
     var pairs = _.pairs(feature);
     for (i = 0; i < pairs.length; i++) {
@@ -112,7 +112,7 @@ map.on('load', function() {
     }
   });
 
-  map.on('mouseenter', 'streets', function(e) {
+  map.on('click', 'streets', function(e) {
     // Change the cursor style as a UI indicator.
     map.getCanvas().style.cursor = 'pointer';
 
@@ -129,16 +129,16 @@ map.on('load', function() {
     // Populate the popup and set its coordinates
     // based on the feature found.
     popup.setLngLat(coordinates)
-        .setHTML("Collisions in 2017: " +  description) //fix this
-        .addTo(map);
+      .setHTML("Collisions in 2017: " +  description) //fix this
+      .addTo(map);
   });
 
-  //data to show in top right
-  map.on('mouseleave', function (e) {
-      var features = map.queryRenderedFeatures(e.point);
-      map.getCanvas().style.cursor = '';
-      overlay.style.display = 'none';
-      popup.remove();
+  map.on('mouseenter', 'streets', function () {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+
+  map.on('mouseleave', 'streets', function () {
+    map.getCanvas().style.cursor = '';
   });
 
 });
