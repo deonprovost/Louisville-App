@@ -7,7 +7,6 @@ body {
 p.main {
   font-size: 24px;
 }
-
 .sidebar {
     background-color: #202020;
     position: absolute;
@@ -33,7 +32,9 @@ p.main {
     width: 300px;
     z-index: 2;
     overflow: auto;
-    background: rgba(255, 255, 255, 0.8);}
+/* background: rgba(255, 255, 255, 0.8);*/
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+  }
 
 #map canvas {
     cursor: crosshair;
@@ -100,7 +101,17 @@ input[type="text" i] {
   height: 10px;
   margin-right: 5px;
 }
+#mydata{
+  padding: 0px;
+}
+table {
+    border-collapse:collapse;
+    table-layout:fixed;
+}
 
-#features-title {
-  margin-left: 5px;
+td{
+    border:1px solid #ccc;
+    padding:5px 10px;
+    vertical-align:top;
+    word-break:break-word;
 }
