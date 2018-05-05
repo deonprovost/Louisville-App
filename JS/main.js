@@ -119,10 +119,6 @@ map.on('load', function() {
         .addTo(map);
   });
 
-//  var close_button = document.createElement('div');
-//  var myButton = document.getElementById("close-overlay");
-//  var close = close_button.appendChild(myButton);
-
   map.on('click', 'streets', function (e) {
 
         var myNode = document.getElementById("features-title");
@@ -136,7 +132,6 @@ map.on('load', function() {
 
         for (i = 0; i < pairs.length; i++) {
           var entry = document.createElement('div');
-          var empty = document.createElement('div');
           var text = pairs[i][0] + ' : ' + pairs[i][1];
           entry.textContent = `${text}`;
 

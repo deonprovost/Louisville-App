@@ -3,7 +3,6 @@ var paintAs = function(prop) {
   map.setPaintProperty('streets', "line-color", ["interpolate", ['linear'], ["get", prop], 0, "#FF0000", 1, "#0000FF"]);
 };
 
-
 var bikePaint = function() {
   map.setPaintProperty('streets', "line-color", ["interpolate", ['linear'], ["get", "BIKEWAY"], 0, "#FF0000", 1, "#0000FF"]);
 };
