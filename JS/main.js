@@ -36,6 +36,7 @@ $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + " - " + $( "#sl
 
 $("#slider-range" ).slider({
   change: function(event, ui) {
+    map.setLayoutProperty('intersections', 'visibility', 'visible');
     map.setFilter("intersections", ["all", [">=", 'risk_score', ui.values[0]], ["<=", 'risk_score', ui.values[1]]]);
   }
 });
@@ -117,6 +118,7 @@ map.on('load', function() {
     popup.setLngLat(coordinates)
         .setHTML("Selected Segment")
         .addTo(map);
+
   });
 
   map.on('click', 'streets', function (e) {
@@ -140,8 +142,7 @@ map.on('load', function() {
           overlay.style.padding = '10px';
           overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
     }
-var parentDiv = document.getElementById("features");
-overlay.parentDiv.insertBefore(myButton, sub_overlay);
+    new openOverlay();
   });
   // Change the cursor to a pointer when the mouse is over the places layer.
   map.on('mouseenter', 'streets', function () {
